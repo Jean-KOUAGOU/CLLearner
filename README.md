@@ -6,11 +6,13 @@ This folder contains our implementation of a concept length learner in descripti
 
 *-* Clone this repository: git clone https://github.com/Jean-KOUAGOU/CLLearner
 
-*-* Choose the knowledge you want in main.py by choosing the right path in the parser
+*-* Choose the knowledge you want in main.py by choosing the right path in the argument parser
 
 *-* If GPU is available, set train_on_gpu to True
 
 *-* In the train-test split line, choose test_size=0.05
+
+*-* Set alpha = 1 or alpha = 0.
 
 *-* Save and run main.py
 
