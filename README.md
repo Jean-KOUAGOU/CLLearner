@@ -18,4 +18,4 @@ This repository contains our implementation (in Python) of a concept length lear
 
 *-* When prompted for the number of iterations, enter 1000 (if GPU is available);
 
-*-* When prompted for a value for print_every, input an integer which represents the inverse-frequency at which training details are shown, and controls the smoothness of training curves. 
+*-* When prompted for a value for print_every, input an integer, which represents the inverse-frequency at which training details are shown, and controls the smoothness of training curves. 
