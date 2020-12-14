@@ -1,9 +1,9 @@
 import random, os, copy, torch, torch.nn as nn, numpy as np
-from My_ConEx.main import Experiment
-from My_ConEx.save_embeddings import save_ConEx_emb
+from Modified_ConEx.main import Experiment
+from Modified_ConEx.save_embeddings import save_ConEx_emb
 # os.chdir('/content/drive/My Drive/ResearchProjectAMMI/ConEx/')
 # from main import Experiment
-from My_ConEx.helper_classes import Data
+from Modified_ConEx.helper_classes import Data
 import rdflib
 #from helper_classes import Data
 from DataGenerator import DataTriples
