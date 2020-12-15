@@ -222,15 +222,13 @@ def train(Net, data_X, data_y, data_dir, train_on_gpu=False, epochs=20, batch_si
     
     from sklearn.model_selection import KFold
     
-    best_val_error = 50.
     Kf = KFold(n_splits=kf_n_splits)
-
+    print("-------------------- {} starts training --------------------".format(Net.name))
     counter = 0
     best_val_error = 50.
     fold = 0
     All_losses = defaultdict(lambda: [])
     All_acc = defaultdict(lambda: [])
-    print()
     for train_index, test_index in Kf.split(data_X):
       net = copy.deepcopy(Net)
       opt = torch.optim.SGD(net.parameters(), lr=lr)
@@ -241,8 +239,9 @@ def train(Net, data_X, data_y, data_dir, train_on_gpu=False, epochs=20, batch_si
       X_train, X_test = data_X[train_index], data_X[test_index]
       y_train, y_test = data_y[train_index], data_y[test_index]
       fold += 1
+      print()
       print("*"*50)
-      print("Fold {}:\n".format(fold))
+      print("Fold {}/{}:\n".format(fold, kf_n_splits))
       print("*"*50, "\n")
       counter = 0
       train_losses = []
@@ -342,7 +341,7 @@ def train(Net, data_X, data_y, data_dir, train_on_gpu=False, epochs=20, batch_si
     if ans == 'y':
       torch.save(net.state_dict(), "./"+("/").join(data_dir.split("/")[1:-2])+"/"+str(net.name)+"_"+str(net.key_args)+"_.pt")
       print("Model saved")
-    print("Train average acc:{}, Validation average acc:{}".format(t_acc[-1], v_acc[-1]))
+    print("Train average accuracy: {}, Validation average accuracy: {}".format(t_acc[-1], v_acc[-1]))
     net.eval()
     return net
                 

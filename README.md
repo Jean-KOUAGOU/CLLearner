@@ -14,6 +14,8 @@ This repository contains our implementation (in Python) of a concept length lear
 
 *-* Set alpha = 1 or alpha = 0;
 
+*-* In train arguments, choose kf\_n\_splits = 10 for a ten-fold cross-validation setting
+
 *-* Save and run main.py;
 
 *-* When prompted for the number of iterations, enter 1000 (if GPU is available);
