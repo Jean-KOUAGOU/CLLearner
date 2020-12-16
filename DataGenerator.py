@@ -92,7 +92,6 @@ class DataTriples:
                   for t in types.intersection(self.atomic_concept_names):
                     instance_statistics[t] += 1
                 instance_statistics.update({"num_pos_examples": len(concept.instances)})
-                self.concept_length_dist.update([concept.length])
                 if not concept.str in self.concept_pos_neg:
                   self.concept_pos_neg[concept.str]["positive"] = positive
                   self.concept_pos_neg[concept.str]["negative"] = negative
@@ -100,13 +99,16 @@ class DataTriples:
                 if str(valid_pos) in No_concept_redundancy_map and No_concept_redundancy_map[str(valid_pos)].length > concept.length:
                   No_concept_redundancy_map[str(valid_pos)] = concept
                   No_redundancy_length_counts.update([concept.length])
+                  self.concept_length_dist.update([concept.length])
                 elif (str(valid_pos) in No_concept_redundancy_map and\
                 No_redundancy_length_counts[concept.length] < max(No_redundancy_length_counts.values())*self.concept_redundancy_rate):#and No_concept_redundancy_map[str(valid_pos)].length > concept.length:
                   No_concept_redundancy_map[str(valid_pos)+str(random.random())] = concept
                   No_redundancy_length_counts.update([concept.length])
+                  self.concept_length_dist.update([concept.length])
                 elif not str(valid_pos) in No_concept_redundancy_map:
                   No_concept_redundancy_map[str(valid_pos)] = concept
                   No_redundancy_length_counts.update([concept.length])
+                  self.concept_length_dist.update([concept.length])
 
             
         self.No_concept_redundancy_map = No_concept_redundancy_map
