@@ -97,7 +97,6 @@ class DataTriples:
                   self.concept_pos_neg[concept.str]["positive"] = positive
                   self.concept_pos_neg[concept.str]["negative"] = negative
                   self.concept_pos_neg[concept.str]["stats"] = list(instance_statistics.values())
-                rand = random.random()
                 if str(valid_pos) in No_concept_redundancy_map and No_concept_redundancy_map[str(valid_pos)].length > concept.length:
                   No_concept_redundancy_map[str(valid_pos)] = concept
                   No_redundancy_length_counts.update([concept.length])
