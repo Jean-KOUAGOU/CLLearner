@@ -21,12 +21,12 @@ def upsampling(data, target_col_name):
     # Upsample minority class
       data_minority_upsampled = resample(data_minority, 
                                   replace=True,     # sample with replacement
-                                  n_samples=np.sum(data_copy[target_col_name]==majority),    # to match majority class
+                                  n_samples=np.sum(data_copy[target_col_name]==majority),
                                   random_state=123) # reproducible results
 
       new_data_upsampled = pd.concat([new_data_upsampled, data_minority_upsampled])
-    rand = list(range(new_data_upsampled.shape[0]))    # indexing both ones and zeros(concatenated dataset)
-    np.random.shuffle(rand)  #shuffle the indexes
+    rand = list(range(new_data_upsampled.shape[0]))
+    np.random.shuffle(rand)  #shuffle the indices
     new_data_upsampled = new_data_upsampled.iloc[rand] #Re-index the data
     return new_data_upsampled
 
