@@ -4,11 +4,10 @@ from collections import defaultdict, Counter
 import random, os, copy, numpy as np, pandas as pd
 class DataTriples:
     """
-    This class takes an owl file, loads it into a knowledge base using ontolearn.base.KnowledgeBase.
+    This class takes an owl file, loads it using ontolearn.base.KnowledgeBase resulting in a knowledge base.
     A refinement operator is used to generate new concepts of various lengths.
-    The knowledge base is then converted into triples of the form: individual_i ---role_j---> concept_k and stored
-    into three txt files (train.txt, valid.txt and test.txt).
-    The lengths and respective positive and negative examples of each concept are also stored in dedicated dictionaries.
+    The knowledge base is then converted into triples of the form: individual_i ---role_j---> concept_k and stored in a txt file (train.txt).
+    The lengths and the respective positive and negative examples of each concept are also stored in dedicated dictionaries.
     
     """
 
@@ -92,23 +91,22 @@ class DataTriples:
                   for t in types.intersection(self.atomic_concept_names):
                     instance_statistics[t] += 1
                 instance_statistics.update({"num_pos_examples": len(concept.instances)})
+                self.concept_length_dist.update([concept.length])
                 if not concept.str in self.concept_pos_neg:
                   self.concept_pos_neg[concept.str]["positive"] = positive
                   self.concept_pos_neg[concept.str]["negative"] = negative
                   self.concept_pos_neg[concept.str]["stats"] = list(instance_statistics.values())
+                rand = random.random()
                 if str(valid_pos) in No_concept_redundancy_map and No_concept_redundancy_map[str(valid_pos)].length > concept.length:
                   No_concept_redundancy_map[str(valid_pos)] = concept
                   No_redundancy_length_counts.update([concept.length])
-                  self.concept_length_dist.update([concept.length])
                 elif (str(valid_pos) in No_concept_redundancy_map and\
                 No_redundancy_length_counts[concept.length] < max(No_redundancy_length_counts.values())*self.concept_redundancy_rate):#and No_concept_redundancy_map[str(valid_pos)].length > concept.length:
                   No_concept_redundancy_map[str(valid_pos)+str(random.random())] = concept
                   No_redundancy_length_counts.update([concept.length])
-                  self.concept_length_dist.update([concept.length])
                 elif not str(valid_pos) in No_concept_redundancy_map:
                   No_concept_redundancy_map[str(valid_pos)] = concept
                   No_redundancy_length_counts.update([concept.length])
-                  self.concept_length_dist.update([concept.length])
 
             
         self.No_concept_redundancy_map = No_concept_redundancy_map
