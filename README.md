@@ -1,10 +1,10 @@
-# CLLearner-Multi-Emb-Models
+# CLLearner
 The repository contains our implementation of a concept length learner in description logics
 
 ## To reproduce the results:
 *-* Install ontolearn and all its dependencies;
 
-*-* Clone this repository: git clone https://github.com/Jean-KOUAGOU/CLLearner-Multi-Emb-Models.git;
+*-* Clone this repository: git clone https://github.com/Jean-KOUAGOU/CLLearner;
 
 *-* Choose the knowledge you want in main.py by inputting the right path. Not that the family\_forte knowledge graph is a small/toy data set, and should not be used here. Please feel free to add another big knowledge graph to run new experiments. It may be necessary to reduce path\_length and num\_generation_paths in the DataTriples arguments, especially on big knowledge graphs.;
 
